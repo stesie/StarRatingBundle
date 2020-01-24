@@ -19,16 +19,8 @@ class StarRatingExtension extends Extension
      */
     public function load(array $configs, ContainerBuilder $container)
     {
-        $configuration = new Configuration();
-        $config = $this->processConfiguration($configuration, $configs);
-
-        $container->setParameter('star_rating.config', $config);
-
-        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('services.yml');
-
         $resources = $container->getParameter('twig.form.resources');
-        $resources = array_merge(array('@StarRatingBundle/rating.html.twig'), $resources);
+        $resources = array_merge(array('@StarRating/rating.html.twig'), $resources);
         $container->setParameter('twig.form.resources', $resources);
     }
 }
